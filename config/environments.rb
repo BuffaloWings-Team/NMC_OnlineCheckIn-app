@@ -4,7 +4,7 @@ require 'roda'
 require 'figaro'
 require 'logger'
 
-module Credence
+module OnlineCheckIn
   # Configuration for the API
   class App < Roda
     plugin :environments

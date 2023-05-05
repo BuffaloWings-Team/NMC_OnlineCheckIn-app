@@ -4,8 +4,8 @@ require 'roda'
 require 'slim'
 require 'rack/session'
 
-module Credence
-  # Base class for Credence Web Application
+module OnlineCheckIn
+  # Base class for OnlineCheckIn Web Application
   class App < Roda
     plugin :render, engine: 'slim', views: 'app/presentation/views'
     plugin :assets, css: 'style.css', path: 'app/presentation/assets'
