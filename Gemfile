@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 
 # Web
 gem 'puma'
-gem "rack-session"
+gem 'rack-session'
 gem 'redis-rack', git: 'https://github.com/redis-store/redis-rack'
 gem 'redis-store', git: 'https://github.com/PikachuEXE/redis-store', branch: 'fix/redis-client-compatibility'
 gem 'roda'
