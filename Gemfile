@@ -1,29 +1,30 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
+ruby File.read('.ruby-version').strip
 
 # Web
-gem 'puma'
-gem 'rack-session'
+gem 'puma', '~>6.0'
+gem 'rack-session', '~>2.0'
 gem 'redis-rack', git: 'https://github.com/redis-store/redis-rack'
 gem 'redis-store', git: 'https://github.com/PikachuEXE/redis-store', branch: 'fix/redis-client-compatibility'
-gem 'roda'
+gem 'roda', '~>3.54'
 gem 'slim'
 
 # Configuration
-gem 'figaro'
-gem 'rake'
-
-# Debugging
-gem 'pry'
+gem 'figaro', '~>1.2'
+gem 'rake', '~>13.0'
 
 # Communication
-gem 'http'
-gem 'redis'
+gem 'http', '~>5.1'
+gem 'redis', '~>5.0'
 
 # Security
 gem 'rack-ssl-enforcer'
-gem 'rbnacl' # assumes libsodium package already installed
+gem 'rbnacl', '~>7.1'
+
+# Debugging
+gem 'pry'
 
 # Development
 group :development do
