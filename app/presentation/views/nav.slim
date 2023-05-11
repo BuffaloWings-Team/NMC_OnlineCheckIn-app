@@ -19,8 +19,8 @@ nav role="navigation" class="navbar navbar-expand-sm navbar-dark bg-primary"
               a class="dropdown-item" href="/account/#{@current_account['username']}" account
               a class="dropdown-item" href='/auth/logout' logout
         - else
-          li class="nav-item"
+          i class="nav-item"
             a class="nav-link" href='/auth/login' login
           li class="nav-item"
-            a class="nav-link disabled" href='/auth/login' register
+            a class="nav-link" href='/auth/register' register
         

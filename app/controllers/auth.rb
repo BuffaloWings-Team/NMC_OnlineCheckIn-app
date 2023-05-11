@@ -28,6 +28,11 @@ module OnlineCheckIn
           flash.now[:error] = 'Username and password did not match our records'
           response.status = 400
           view :login
+        rescue AuthenticateAccount::ApiServerError => e
+          App.logger.warn "API server error: #{e.inspect}\n#{e.backtrace}"
+          flash[:error] = 'Our servers are not responding -- please try later'
+          response.status = 500
+          routing.redirect @login_route
         end
       end
 
@@ -35,6 +40,26 @@ module OnlineCheckIn
         routing.get do
           session[:current_account] = nil
           routing.redirect @login_route
+        end
+      end
+
+      @register_route = '/auth/register'
+      routing.is 'register' do
+        routing.get do
+          view :register
+        end
+        
+        routing.post do
+          account_data = routing.params.transform_keys(&:to_sym)
+          CreateAccount.new(App.config).call(**account_data)
+
+          flash[:notice] = 'Please login with your new account information'
+          routing.redirect @login_route
+        rescue StandardError => e
+          App.logger.error "ERROR CREATING ACCOUNT: #{e.inspect}"
+          App.logger.error e.backtrace
+          flash[:error] = 'Could not create account'
+          routing.redirect @register_route
         end
       end
     end
