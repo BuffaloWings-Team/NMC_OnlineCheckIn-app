@@ -1,0 +1,4 @@
+generate:msg_key
+generate:session_secret
+db:migrate
+console
