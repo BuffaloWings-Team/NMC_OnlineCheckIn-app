@@ -63,6 +63,14 @@ module OnlineCheckIn
           routing.redirect @register_route
         end
       end
+
+        # GET /auth/register/<token>
+        routing.get(String) do |registration_token|
+          flash.now[:notice] = 'Email Verified! Please choose a new password'
+          new_account = SecureMessage.decrypt(registration_token)
+          view :register_confirm,
+               locals: { new_account:,
+                         registration_token: }
     end
   end
 end
