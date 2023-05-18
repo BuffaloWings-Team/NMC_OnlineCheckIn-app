@@ -11,7 +11,7 @@ require_relative '../require_app'
 
 require_app('lib')
 
-module Credence
+module OnlineCheckIn
   # Configuration for the API
   class App < Roda
     plugin :environments
