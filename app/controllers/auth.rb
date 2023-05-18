@@ -21,7 +21,7 @@ module OnlineCheckIn
             password: routing.params['password']
           )
 
-          session[:current_account] = account
+          SecureSession.new(session).set(:current_account, account)
           flash[:notice] = "Welcome back #{account['username']}!"
           routing.redirect '/'
         rescue StandardError
@@ -36,9 +36,11 @@ module OnlineCheckIn
         end
       end
 
+      @logout_route = '/auth/logout'
       routing.on 'logout' do
         routing.get do
-          session[:current_account] = nil
+          SecureSession.new(session).delete(:current_account)
+          flash[:notice] = "You've been logged out"
           routing.redirect @login_route
         end
       end
@@ -48,7 +50,7 @@ module OnlineCheckIn
         routing.get do
           view :register
         end
-        
+
         routing.post do
           account_data = routing.params.transform_keys(&:to_sym)
           CreateAccount.new(App.config).call(**account_data)
