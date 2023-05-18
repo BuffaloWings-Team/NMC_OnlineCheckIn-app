@@ -48,10 +48,11 @@ module OnlineCheckIn
         routing.get do
           view :register
         end
-        
+
+        # POST /auth/register
         routing.post do
           account_data = routing.params.transform_keys(&:to_sym)
-          CreateAccount.new(App.config).call(**account_data)
+          VerifyRegistration.new(App.config).call(account_data)
 
           flash[:notice] = 'Please login with your new account information'
           routing.redirect @login_route
