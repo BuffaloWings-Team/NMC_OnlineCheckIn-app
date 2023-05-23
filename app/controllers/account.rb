@@ -4,7 +4,7 @@ require 'roda'
 require_relative './app'
 
 module OnlineCheckIn
-  # Web controller for OnlineCheckIn API
+  # Web controller for Credence API
   class App < Roda
     route('account') do |routing|
       routing.on do
