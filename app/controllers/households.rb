@@ -10,9 +10,9 @@ module OnlineCheckIn
         # GET /households/
         routing.get do
           if @current_account.logged_in?
-            household_list = GetAllProjects.new(App.config).call(@current_account)
+            household_list = GetAllHouseholds.new(App.config).call(@current_account)
 
-            households = Projects.new(household_list)
+            households = Households.new(household_list)
 
             view :households_all,
                  locals: { current_user: @current_account, households: }
