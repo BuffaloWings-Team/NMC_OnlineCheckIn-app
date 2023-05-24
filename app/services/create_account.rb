@@ -5,8 +5,8 @@ require 'http'
 module OnlineCheckIn
   # Returns an authenticated user, or nil
   class CreateAccount
+    # Error for accounts that cannot be created
     class InvalidAccount < StandardError
-      # Error for accounts that cannot be created
       def message = 'This account can no longer be created: please start again'
     end
 
