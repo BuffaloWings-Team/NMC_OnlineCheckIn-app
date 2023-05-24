@@ -83,9 +83,9 @@ GEM
     rerun (0.14.0)
       listen (~> 3.0)
     rexml (3.2.5)
-    roda (3.68.0)
+    roda (3.67.0)
       rack
-    rubocop (1.51.0)
+    rubocop (1.50.2)
       json (~> 2.3)
       parallel (~> 1.10)
       parser (>= 3.2.0.0)
@@ -101,11 +101,11 @@ GEM
       rubocop (>= 1.7.0, < 2.0)
       rubocop-ast (>= 0.4.0)
     ruby-progressbar (1.13.0)
-    slim (5.1.1)
+    slim (5.1.0)
       temple (~> 0.10.0)
-      tilt (>= 2.1.0)
-    temple (0.10.1)
-    thor (1.2.2)
+      tilt (>= 2.0.6, < 2.2)
+    temple (0.10.0)
+    thor (1.2.1)
     tilt (2.1.0)
     unf (0.1.4)
       unf_ext
@@ -117,7 +117,9 @@ GEM
       hashdiff (>= 0.4.0, < 2.0.0)
 
 PLATFORMS
+  arm64-darwin-22
   ruby
+  x86_64-linux
 
 DEPENDENCIES
   figaro (~> 1.2)

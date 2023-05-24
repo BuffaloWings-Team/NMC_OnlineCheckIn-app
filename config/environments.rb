@@ -48,6 +48,7 @@ module OnlineCheckIn
     end
 
     configure :development, :test do
+      require 'pry'
       # NOTE: env var REDIS_URL only used to wipe the session store (ok to be nil)
       SecureSession.setup(ENV.fetch('REDIS_URL', nil)) # REDIS_URL used again below
 
