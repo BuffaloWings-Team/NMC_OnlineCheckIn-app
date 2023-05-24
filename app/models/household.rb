@@ -5,10 +5,10 @@ module OnlineCheckIn
     class Household
       attr_reader :id, :name, :repo_url
   
-      def initialize(proj_info)
-        @id = proj_info['attributes']['id']
-        @name = proj_info['attributes']['name']
-        @repo_url = proj_info['attributes']['repo_url']
+      def initialize(house_info)
+        @id = house_info['attributes']['id']
+        @name = house_info['attributes']['name']
+        @repo_url = house_info['attributes']['repo_url']
       end
     end
   end

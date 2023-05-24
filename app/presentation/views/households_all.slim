@@ -1,0 +1,16 @@
+div class="row" style="vertical-align: bottom;"
+  div class="col-xs-9"
+    h3 All Projects
+  div class="col-xs-3"
+table class="table"
+  thead
+    tr
+      th Household name
+      th Repo URL
+  tbody
+    - households.all.each do |house|
+      tr
+        td 
+          a href="/account/households/#{house.id}" #{house.name}
+          td 
+            a href="#{house.repo_url}" #{house.repo_url}
