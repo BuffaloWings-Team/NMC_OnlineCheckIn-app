@@ -49,6 +49,7 @@ module OnlineCheckIn
 
     configure :development, :test do
       require 'pry'
+
       # NOTE: env var REDIS_URL only used to wipe the session store (ok to be nil)
       SecureSession.setup(ENV.fetch('REDIS_URL', nil)) # REDIS_URL used again below
 
@@ -60,7 +61,13 @@ module OnlineCheckIn
 
       # use Rack::Session::Redis,
       #     expire_after: ONE_MONTH,
-      #     redis_server: ENV.delete('REDIS_URL')
+      #     redis_server: {
+      #       url: ENV.delete('REDIS_URL')
+      #     }
+    end
+
+    configure :development, :test do
+      require 'pry'
 
       # Allows running reload! in pry to restart entire app
       def self.reload!
