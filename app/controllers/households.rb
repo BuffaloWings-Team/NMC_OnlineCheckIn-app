@@ -60,28 +60,28 @@ module OnlineCheckIn
           end
 
         #   # POST /projects/[proj_id]/documents/
-        #   routing.post('documents') do
-        #     document_data = Form::NewDocument.new.call(routing.params)
-        #     if document_data.failure?
-        #       flash[:error] = Form.message_values(document_data)
-        #       routing.halt
-        #     end
+          routing.post('documents') do
+            document_data = Form::NewDocument.new.call(routing.params)
+            if document_data.failure?
+              flash[:error] = Form.message_values(document_data)
+              routing.halt
+            end
 
-        #     CreateNewDocument.new(App.config).call(
-        #       current_account: @current_account,
-        #       project_id: proj_id,
-        #       document_data: document_data.to_h
-        #     )
+            CreateNewDocument.new(App.config).call(
+              current_account: @current_account,
+              household_id: househ_id,
+              document_data: document_data.to_h
+            )
 
-        #     flash[:notice] = 'Your document was added'
-        #   rescue StandardError => error
-        #     puts error.inspect
-        #     puts error.backtrace
-        #     flash[:error] = 'Could not add document'
-        #   ensure
-        #     routing.redirect @project_route
-        #   end
-        # end
+            flash[:notice] = 'Your document was added'
+          rescue StandardError => error
+            puts error.inspect
+            puts error.backtrace
+            flash[:error] = 'Could not add document'
+          ensure
+            routing.redirect @household_route
+          end
+        end
 
         # GET /households/
         routing.get do
