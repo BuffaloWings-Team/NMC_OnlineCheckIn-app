@@ -74,9 +74,8 @@ module OnlineCheckIn
             )
 
             flash[:notice] = 'Your document was added'
-          rescue StandardError => error
-            puts error.inspect
-            puts error.backtrace
+          rescue StandardError => e
+            puts "ERROR CREATING DOCUMENT: #{e.inspect}"
             flash[:error] = 'Could not add document'
           ensure
             routing.redirect @household_route
@@ -97,7 +96,7 @@ module OnlineCheckIn
         # POST /projects/
         routing.post do
           routing.redirect '/auth/login' unless @current_account.logged_in?
-          puts "HOUSEH: #{routing.params}"
+
           household_data = Form::NewHousehold.new.call(routing.params)
           if household_data.failure?
             flash[:error] = Form.message_values(household_data)
