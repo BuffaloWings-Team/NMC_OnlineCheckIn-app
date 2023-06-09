@@ -4,7 +4,7 @@ module OnlineCheckIn
   # Behaviors of the currently logged in account
   class Household
     attr_reader :id, :name, :repo_url, # basic info
-                :owner, :collaborators, :documents, :policies # full details
+                :owner, :collaborators, :members, :policies # full details
 
     def initialize(househ_info)
       process_attributes(househ_info['attributes'])
@@ -25,17 +25,17 @@ module OnlineCheckIn
 
       @owner = Account.new(relationships['owner'])
       @collaborators = process_collaborators(relationships['collaborators'])
-      @documents = process_documents(relationships['documents'])
+      @members = process_members(relationships['members'])
     end
 
     def process_policies(policies)
       @policies = OpenStruct.new(policies)
     end
 
-    def process_documents(documents_info)
-      return nil unless documents_info
+    def process_members(members_info)
+      return nil unless members_info
 
-      documents_info.map { |doc_info| Document.new(doc_info) }
+      members_info.map { |doc_info| Member.new(doc_info) }
     end
 
     def process_collaborators(collaborators)

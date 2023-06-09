@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module OnlineCheckIn
-    # Service to add collaborator to project
+    # Service to add collaborator to household
     class AddCollaborator
       class CollaboratorNotAdded < StandardError; end
   
