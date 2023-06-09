@@ -27,11 +27,11 @@ describe 'Test Service Objects' do
       auth_return_json = File.read(auth_account_file)
 
       WebMock.stub_request(:post, "#{API_URL}/auth/authenticate")
-             .with(body: @credentials.to_json)
+             .with(body: SignedMessage.sign(@credentials).to_json)
              .to_return(body: auth_return_json,
                         headers: { 'content-type' => 'application/json' })
 
-      auth = OnlineCheckIn::AuthenticateAccount.new(app.config).call(**@credentials)
+      auth = OnlineCheckIn::AuthenticateAccount.new.call(**@credentials)
 
       account = auth[:account]['attributes']
       _(account).wont_be_nil
@@ -41,7 +41,7 @@ describe 'Test Service Objects' do
 
     it 'BAD: should not find a false authenticated account' do
       WebMock.stub_request(:post, "#{API_URL}/auth/authenticate")
-             .with(body: @mal_credentials.to_json)
+             .with(body: SignedMessage.sign(@mal_credentials).to_json)
              .to_return(status: 401)
       _(proc {
         OnlineCheckIn::AuthenticateAccount.new.call(**@mal_credentials)
