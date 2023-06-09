@@ -2,10 +2,10 @@ div id="newMemberModal" class="modal fade" role="dialog"
   div class="modal-dialog"
     div class="modal-content"
       div class="modal-header"
-        h4 New Household
+        h4 New Member
         button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
       div class="modal-body"
-        form role="form" action="/households/#{household.id}/households" method='post' id='new-household-form'
+        form role="form" action="/households/#{household.id}/members" method='post' id='new-member-form'
           div class="form-group"
             label for='filename_input' File Name:
             input type='text' name='filename' id='filename_input' class="form-control" placeholder="Filename is required"
