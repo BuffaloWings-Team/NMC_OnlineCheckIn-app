@@ -3,7 +3,7 @@
 require 'http'
 
 module OnlineCheckIn
-  # Returns all projects belonging to an account
+  # Returns all households belonging to an account
   class GetAllHouseholds
   def initialize(config)
     @config = config
