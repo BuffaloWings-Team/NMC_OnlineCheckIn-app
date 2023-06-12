@@ -59,7 +59,7 @@ module OnlineCheckIn
             routing.redirect @household_route
           end
 
-        #   # POST /projects/[proj_id]/documents/
+        #   # POST /households/[proj_id]/documents/
           routing.post('documents') do
             document_data = Form::NewDocument.new.call(routing.params)
             if document_data.failure?
@@ -94,7 +94,7 @@ module OnlineCheckIn
           }
         end
 
-        # POST /projects/
+        # POST /households/
         routing.post do
           routing.redirect '/auth/login' unless @current_account.logged_in?
           puts "HOUSEH: #{routing.params}"

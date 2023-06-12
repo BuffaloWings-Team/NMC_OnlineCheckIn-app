@@ -18,6 +18,7 @@ describe 'Test Service Objects' do
     it 'HAPPY: should find an authenticated account' do
       auth_account_file = 'spec/fixtures/auth_account.json'
       ## Use this code to get an actual seeded account from API:
+      # @credentials = { username: 'jacob.john', password: 'mypa$$w0rdispoop' }
       # response = HTTP.post("#{app.config.API_URL}/auth/authenticate",
       #   json: { username: @credentials[:username], password: @credentials[:password] })
       # auth_account_json = response.body.to_s
@@ -30,7 +31,7 @@ describe 'Test Service Objects' do
              .to_return(body: auth_return_json,
                         headers: { 'content-type' => 'application/json' })
 
-      auth = OnlineCheckIn::AuthenticateAccount.new(app.config).call(**@credentials)
+                        auth = OnlineCheckIn::AuthenticateAccount.new.call(**@credentials)
 
       account = auth[:account]
       _(account).wont_be_nil
@@ -41,10 +42,10 @@ describe 'Test Service Objects' do
     it 'BAD: should not find a false authenticated account' do
       WebMock.stub_request(:post, "#{API_URL}/auth/authenticate")
              .with(body: @mal_credentials.to_json)
-             .to_return(status: 403)
+             .to_return(status: 401)
       _(proc {
-        OnlineCheckIn::AuthenticateAccount.new(app.config).call(**@mal_credentials)
-      }).must_raise OnlineCheckIn::AuthenticateAccount::UnauthorizedError
+        OnlineCheckIn::AuthenticateAccount.new.call(**@mal_credentials)
+      }).must_raise OnlineCheckIn::AuthenticateAccount::NotAuthenticatedError
     end
   end
 end
