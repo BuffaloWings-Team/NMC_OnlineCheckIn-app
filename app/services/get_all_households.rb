@@ -2,8 +2,9 @@
 
 require 'http'
 
-# Returns all households belonging to an account
-class GetAllHouseholds
+module OnlineCheckIn
+  # Returns all projects belonging to an account
+  class GetAllHouseholds
   def initialize(config)
     @config = config
   end
@@ -13,5 +14,6 @@ class GetAllHouseholds
                    .get("#{@config.API_URL}/households")
 
     response.code == 200 ? JSON.parse(response.to_s)['data'] : nil
+    end
   end
 end
