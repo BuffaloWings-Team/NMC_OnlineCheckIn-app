@@ -59,24 +59,24 @@ module OnlineCheckIn
             routing.redirect @household_route
           end
 
-        #   # POST /projects/[proj_id]/documents/
-          routing.post('documents') do
-            document_data = Form::NewDocument.new.call(routing.params)
-            if document_data.failure?
-              flash[:error] = Form.message_values(document_data)
+        #   # POST /households/[proj_id]/members/
+          routing.post('members') do
+            member_data = Form::NewMember.new.call(routing.params)
+            if member_data.failure?
+              flash[:error] = Form.message_values(member_data)
               routing.halt
             end
 
-            CreateNewDocument.new(App.config).call(
+            CreateNewMember.new(App.config).call(
               current_account: @current_account,
               household_id: househ_id,
-              document_data: document_data.to_h
+              member_data: member_data.to_h
             )
 
-            flash[:notice] = 'Your document was added'
+            flash[:notice] = 'Your member was added'
           rescue StandardError => e
-            puts "ERROR CREATING DOCUMENT: #{e.inspect}"
-            flash[:error] = 'Could not add document'
+            puts "ERROR CREATING MEMBER: #{e.inspect}"
+            flash[:error] = 'Could not add member'
           ensure
             routing.redirect @household_route
           end
@@ -108,7 +108,7 @@ module OnlineCheckIn
             household_data: household_data.to_h
           )
 
-          flash[:notice] = 'Add documents and collaborators to your new household'
+          flash[:notice] = 'Add members and collaborators to your new household'
         rescue StandardError => e
           puts "FAILURE Creating Household: #{e.inspect}"
           flash[:error] = 'Could not create household'

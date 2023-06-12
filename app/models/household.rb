@@ -24,17 +24,17 @@ module OnlineCheckIn
 
       @owner = Account.new(relationships['owner'])
       @collaborators = process_collaborators(relationships['collaborators'])
-      @documents = process_documents(relationships['documents'])
+      @members = process_members(relationships['members'])
     end
 
     def process_policies(policies)
       @policies = OpenStruct.new(policies)
     end
 
-    def process_documents(documents_info)
-      return nil unless documents_info
+    def process_members(members_info)
+      return nil unless members_info
 
-      documents_info.map { |doc_info| Document.new(doc_info) }
+      members_info.map { |member_info| Member.new(member_info) }
     end
 
     def process_collaborators(collaborators)
