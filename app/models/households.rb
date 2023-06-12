@@ -8,8 +8,8 @@ module OnlineCheckIn
     attr_reader :all
 
     def initialize(households_list)
-      @all = households_list.map do |proj|
-        Household.new(proj)
+      @all = households_list.map do |househ|
+        Household.new(househ)
       end
     end
   end
