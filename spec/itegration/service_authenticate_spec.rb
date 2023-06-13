@@ -18,7 +18,7 @@ describe 'Test Service Objects' do
     it 'HAPPY: should find an authenticated account' do
       auth_account_file = 'spec/fixtures/auth_account.json'
       ## Use this code to get an actual seeded account from API:
-      # @credentials = { username: 'soumya.ray', password: 'mypa$$w0rd' }
+      # @credentials = { username: 'jacob.john', password: 'mypa$$w0rdispoop' }
       # response = HTTP.post("#{app.config.API_URL}/auth/authenticate",
       #   json: { username: @credentials[:username], password: @credentials[:password] })
       # auth_account_json = response.body.to_s
@@ -31,7 +31,7 @@ describe 'Test Service Objects' do
              .to_return(body: auth_return_json,
                         headers: { 'content-type' => 'application/json' })
 
-      auth = OnlineCheckIn::AuthenticateAccount.new(app.config).call(**@credentials)
+                        auth = OnlineCheckIn::AuthenticateAccount.new.call(**@credentials)
 
       account = auth[:account]['attributes']
       _(account).wont_be_nil

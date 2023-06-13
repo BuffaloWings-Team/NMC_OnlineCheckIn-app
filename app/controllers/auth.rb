@@ -4,7 +4,7 @@ require 'roda'
 require_relative './app'
 
 module OnlineCheckIn
-  # Web controller for OnlineCheckIn API
+  # Web controller for OnlineCheckIn APP
   class App < Roda
     def gh_oauth_url(config)
       url = config.GH_OAUTH_URL
@@ -48,7 +48,7 @@ module OnlineCheckIn
         rescue AuthenticateAccount::NotAuthenticatedError
           flash[:error] = 'Username and password did not match our records'
           response.status = 401
-          routing.redirect @login_route
+          routing.redirect @login_route 
         rescue AuthenticateAccount::ApiServerError => e
           App.logger.warn "API server error: #{e.inspect}\n#{e.backtrace}"
           flash[:error] = 'Our servers are not responding -- please try later'

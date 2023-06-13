@@ -7,7 +7,7 @@ module OnlineCheckIn
   class AuthenticateAccount
     class NotAuthenticatedError < StandardError; end
 
-    class ApiServerError < StandardError; end
+    class ApiServerError < StandardError; end 
 
     def call(username:, password:)
       response = HTTP.post("#{ENV['API_URL']}/auth/authenticate",

@@ -35,7 +35,7 @@ module OnlineCheckIn
     def process_members(members_info)
       return nil unless members_info
 
-      members_info.map { |doc_info| Member.new(doc_info) }
+      members_info.map { |member_info| Member.new(member_info) }
     end
 
     def process_collaborators(collaborators)
