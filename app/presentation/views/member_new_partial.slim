@@ -1,0 +1,19 @@
+div id="newMemberModal" class="modal fade" role="dialog"
+  div class="modal-dialog"
+    div class="modal-content"
+      div class="modal-header"
+        h4 New Member
+        button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+      div class="modal-body"
+        form role="form" action="/households/#{household.id}/members" method='post' id='new-member-form'
+          div class="form-group"
+            label for='firstname_input' First Name:
+            input type='text' name='firstname' id='firstname_input' class="form-control" placeholder="First name is required"
+          div class="form-group"
+            label for='lastname_input' Last Name:
+            input type='text' name='lastname' id='lastname_input' class="form-control" placeholder="Last name is required"
+          div class="form-group"
+            label for='dob_input' Date of Birth:
+            input type='text' name='dob' id='dob_input' class="form-control" placeholder="Date of birth is required"
+          button type='submit' class="btn btn-primary submit" id='registration-form-submit' value='submit' Create
+          button type="button" class="btn btn-secondary" data-bs-dismiss="modal" Cancel

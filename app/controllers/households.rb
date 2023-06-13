@@ -74,9 +74,8 @@ module OnlineCheckIn
             )
 
             flash[:notice] = 'Your member was added'
-          rescue StandardError => error
-            puts error.inspect
-            puts error.backtrace
+          rescue StandardError => e
+            puts "ERROR CREATING MEMBER: #{e.inspect}"
             flash[:error] = 'Could not add member'
           ensure
             routing.redirect @household_route

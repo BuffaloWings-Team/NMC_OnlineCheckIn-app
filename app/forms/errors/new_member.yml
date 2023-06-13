@@ -1,0 +1,5 @@
+en:
+  errors:
+    first_name: 'First name must be filled'
+    last_name: 'Last name must be filled'
+    dob: 'date of birth must be filled'

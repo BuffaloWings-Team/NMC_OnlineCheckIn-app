@@ -1,0 +1,18 @@
+h2 
+  a href="/households/#{member.household.id}" #{member.household.houseowner}
+
+dl
+  div class="row"
+    div class="col-xs-3"
+      dt First Name:
+    div class="col-xs-9"
+      dd class="blockquote" #{member.first_name}
+    div class="col-xs-3"
+      dt Last Name:
+    div class="col-xs-9"
+      dd class="blockquote" #{member.last_name}
+    div class="col-xs-3"
+      dt Dob:
+    div class="col-xs-9"
+      dd class="blockquote" #{member.dob}
+    
