@@ -45,7 +45,7 @@ module OnlineCheckIn
           flash[:notice] = "Welcome back #{current_account.username}!"
           routing.redirect '/households'
         rescue AuthenticateAccount::NotAuthenticatedError
-          flash[:error] = 'Username and password did not match our records'
+          flash.now[:error] = 'Username and password did not match our records'
           response.status = 401
           view :login
         rescue AuthenticateAccount::ApiServerError => e

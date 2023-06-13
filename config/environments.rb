@@ -18,29 +18,29 @@ module OnlineCheckIn
 
     # Environment variables setup
     Figaro.application = Figaro::Application.new(
-      environment:,
+      environment: environment,
       path: File.expand_path('config/secrets.yml')
     )
     Figaro.load
-    def self.config = Figaro.env
+    def self.config() = Figaro.env
 
     # Logger setup
     LOGGER = Logger.new($stderr)
-    def self.logger = LOGGER
+    def self.logger() = LOGGER
 
     ONE_MONTH = 30 * 24 * 60 * 60
 
     configure do
+      SecureSession.setup(ENV['REDIS_TLS_URL']) # REDIS_TLS_URL used again below
       SecureMessage.setup(ENV.delete('MSG_KEY'))
+      SignedMessage.setup(config)
     end
 
     configure :production do
-      SecureSession.setup(ENV.fetch('REDIS_TLS_URL')) # REDIS_TLS_URL used again below
-
-      use Rack::SslEnforcer, hsts: true
-
       use Rack::Session::Redis,
           expire_after: ONE_MONTH,
+          httponly: true,
+          same_site: :strict,
           redis_server: {
             url: ENV.delete('REDIS_TLS_URL'),
             ssl_params: { verify_mode: OpenSSL::SSL::VERIFY_NONE }
@@ -48,19 +48,22 @@ module OnlineCheckIn
     end
 
     configure :development, :test do
-      require 'pry'
-
-      # NOTE: env var REDIS_URL only used to wipe the session store (ok to be nil)
-      SecureSession.setup(ENV.fetch('REDIS_URL', nil)) # REDIS_URL used again below
-
       # use Rack::Session::Cookie,
-      #     expire_after: ONE_MONTH, secret: config.SESSION_SECRET
+      #     expire_after: ONE_MONTH,
+      #     secret: config.SESSION_SECRET,
+      #     httponly: true,
+      #     same_site: :strict
+
 
       use Rack::Session::Pool,
-          expire_after: ONE_MONTH
+          expire_after: ONE_MONTH,
+          httponly: true,
+          same_site: :strict
 
       # use Rack::Session::Redis,
       #     expire_after: ONE_MONTH,
+      #     httponly: true,
+      #     same_site: :strict,
       #     redis_server: {
       #       url: ENV.delete('REDIS_URL')
       #     }
