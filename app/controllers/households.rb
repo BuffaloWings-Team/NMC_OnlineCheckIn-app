@@ -84,6 +84,8 @@ module OnlineCheckIn
 
         # GET /households/
         routing.get do
+          print("ready to create household\n")
+
           household_list = GetAllHouseholds.new(App.config).call(@current_account)
 
           households = Households.new(household_list)
@@ -95,8 +97,9 @@ module OnlineCheckIn
 
         # POST /households/
         routing.post do
+          print("ready to create household\n")
           routing.redirect '/auth/login' unless @current_account.logged_in?
-
+          print("we're logged in\n")
           household_data = Form::NewHousehold.new.call(routing.params)
           if household_data.failure?
             flash[:error] = Form.message_values(household_data)

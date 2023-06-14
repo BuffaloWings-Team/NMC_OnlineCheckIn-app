@@ -62,11 +62,14 @@ module OnlineCheckIn
           authorized = AuthorizeGithubAccount
                        .new(App.config)
                        .call(routing.params['code'])
-
+          print("AUTHORIZED finished \n")
+          print("authorized info: ", authorized)
           current_account = Account.new(
             authorized[:account],
             authorized[:auth_token]
           )
+          print("create account finished \n")
+
 
           CurrentSession.new(session).current_account = current_account
 
