@@ -15,6 +15,7 @@ module OnlineCheckIn
     private
 
     def process_attributes(attributes)
+      @id = attributes['id']
       @houseowner = attributes['houseowner']
       @floorNo = attributes['floorNo']
       @roomNo = attributes['roomNo']
