@@ -25,9 +25,9 @@ div class="row"
         tbody
             tr
               td 
-                a #{member.first_name}
+                a #{member.firstname}
               td 
-                a #{member.last_name}
+                a #{member.lastname}
               td 
                 a #{member.dob}
       include :household_new_partial
@@ -50,8 +50,8 @@ div class="row"
         - if household.collaborators.empty?
           span class="small" Pls remember to add your household members
         ul class="list-group"
-          / li class="list-group-item clearfix"
-          /     = household.houseowner
+          /li class="list-group-item clearfix"
+               = household.houseowner
           - household.collaborators.each do |collaborator|
             li class="list-group-item clearfix"
               '  #{collaborator.username}
