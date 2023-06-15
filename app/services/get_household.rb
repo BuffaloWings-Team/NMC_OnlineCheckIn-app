@@ -9,7 +9,8 @@ module OnlineCheckIn
       @config = config
     end
 
-    def call(current_account, housh_id)
+    def call(current_account, househ_id)
+      print("househ_id: #{househ_id}")
       response = HTTP.auth("Bearer #{current_account.auth_token}")
                     .get("#{@config.API_URL}/households/#{househ_id}")
 

@@ -9,7 +9,7 @@ module OnlineCheckIn
 
     def initialize(households_list)
       @all = households_list.map do |househ|
-        Household.new(househ)
+      Household.new(househ)
       end
     end
   end
