@@ -8,7 +8,7 @@ module OnlineCheckIn
       config.messages.load_paths << File.join(__dir__, 'errors/new_household.yml')
 
       params do
-        required(:homeowner).filled
+        required(:houseowner).filled
         optional(:floorNo).filled
         required(:contact).filled
       end
