@@ -62,6 +62,7 @@ module OnlineCheckIn
 
         #   # POST /households/[househ_id]/members/
           routing.post('members') do
+            print("Creating member")
             member_data = Form::NewMember.new.call(routing.params)
             if member_data.failure?
               flash[:error] = Form.message_values(member_data)

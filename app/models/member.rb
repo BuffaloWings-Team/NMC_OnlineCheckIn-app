@@ -5,7 +5,7 @@ require_relative 'household'
 module OnlineCheckIn
   # Behaviors of the currently logged in account
   class Member
-    attr_reader :id, :first_name, :last_name, :dob, # basic info
+    attr_reader :id, :firstname, :lastname, :dob, # basic info
                 :household # full details
 
     def initialize(member_info)
@@ -17,9 +17,9 @@ module OnlineCheckIn
 
     def process_attributes(attributes)
       @id             = attributes['id']
-      @first_name      = attributes['first_name']
-      @last_name      = attributes['last_name']
-      @dob           = attributes['dob']
+      @firstname     = attributes['firstname']
+      @lastname      = attributes['lastname']
+      @dob            = attributes['dob']
     end
 
     def process_included(included)

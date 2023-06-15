@@ -8,8 +8,8 @@ module OnlineCheckIn
       config.messages.load_paths << File.join(__dir__, 'errors/new_member.yml')
 
       params do
-        required(:first_name).filled(:string)
-        required(:last_name).maybe(:string)
+        required(:firstname).filled(:string)
+        required(:lastname).maybe(:string)
         required(:dob).maybe(:string)
 
       end
