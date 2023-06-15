@@ -6,14 +6,15 @@ div class="row mt-2"
 table class="table"
   thead
     tr
-      th Household name
-      th Repo URL
+      th Household owner
   tbody
     - households.all.each do |house|
       tr
         td 
-          a href="/households/#{house.id}" #{house.name}
+          a href="/households/#{house.id}" #{house.houseowner}
           td 
-            a href="#{house.repo_url}" #{house.repo_url}
+            a href="#{house.floorNo}" #{house.floorNo}
+          td
+            a href="#{house.contact}" #{house.contact}
 
 include :household_new_partial

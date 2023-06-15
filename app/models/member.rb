@@ -4,28 +4,26 @@ require_relative 'household'
 
 module OnlineCheckIn
   # Behaviors of the currently logged in account
-  class Memeber
-    attr_reader :id, :filename, :relative_path, :description, # basic info
-                :content,
+  class Member
+    attr_reader :id, :first_name, :last_name, :dob, # basic info
                 :household # full details
 
-    def initialize(info)
-      process_attributes(info['attributes'])
-      process_included(info['include'])
+    def initialize(member_info)
+      process_attributes(member_info['attributes'])
+      process_included(member_info['include'])
     end
 
     private
 
     def process_attributes(attributes)
       @id             = attributes['id']
-      @filename       = attributes['filename']
-      @relative_path  = attributes['relative_path']
-      @description    = attributes['description']
-      @content        = attributes['content']
+      @first_name      = attributes['first_name']
+      @last_name      = attributes['last_name']
+      @dob           = attributes['dob']
     end
 
     def process_included(included)
-      @household = Houeholds.new(included['household'])
+      @household = Household.new(included['household'])
     end
   end
 end

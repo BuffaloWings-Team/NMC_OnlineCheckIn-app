@@ -1,18 +1,18 @@
 h2 
-  a href="/households/#{member.household.id}" #{member.household.name}
-h3 File: #{File.join(member.relative_path, member.filename)}
+  a href="/households/#{member.household.id}" #{member.household.houseowner}
 
 dl
   div class="row"
     div class="col-xs-3"
-      dt Description:
+      dt First Name:
     div class="col-xs-9"
-      dd class="blockquote" #{member.description}
+      dd class="blockquote" #{member.first_name}
     div class="col-xs-3"
-      dt Member:
+      dt Last Name:
     div class="col-xs-9"
-      dd class="blockquote"
-        a data-bs-toggle="collapse" href="#member" aria-expanded="false" aria-controls="member" show member
-        div id="member" class="collapse"
-          div class="card card-body"
-            pre class="force-wrap" #{member.content}
+      dd class="blockquote" #{member.last_name}
+    div class="col-xs-3"
+      dt Dob:
+    div class="col-xs-9"
+      dd class="blockquote" #{member.dob}
+

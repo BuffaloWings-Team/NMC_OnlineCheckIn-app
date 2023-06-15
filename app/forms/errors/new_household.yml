@@ -1,4 +1,5 @@
 en:
   errors:
-    name: 'Household name must be filled'
-    repo_url: 'URL must be in proper format'
+    houseowner: 'Household name must be filled'
+    floorNo: 'Floor number must be filled'
+    contact: 'Contact number must be filled'

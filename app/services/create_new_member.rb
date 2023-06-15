@@ -3,7 +3,7 @@
 require 'http'
 
 module OnlineCheckIn
-  # Create a new configuration file for a project
+  # Create a new configuration file for a household
   class CreateNewMember
     def initialize(config)
       @config = config
