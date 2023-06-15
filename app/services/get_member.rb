@@ -9,9 +9,9 @@ module OnlineCheckIn
       @config = config
     end
 
-    def call(user, memb_id)
+    def call(user, member_id)
       response = HTTP.auth("Bearer #{user.auth_token}")
-                    .get("#{@config.API_URL}/members/#{memb_id}")
+                    .get("#{@config.API_URL}/members/#{member_id}")
 
       response.code == 200 ? JSON.parse(response.body.to_s)['data'] : nil
     end

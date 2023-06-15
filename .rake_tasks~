@@ -8,3 +8,4 @@ run:dev
 session:wipe
 spec
 style
+url:integrity
