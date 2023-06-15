@@ -20,7 +20,7 @@ module OnlineCheckIn
       @roomNo = attributes['roomNo']
       @ping = attributes['ping']
       @email = attributes['email']
-      @phonenumber = attribute['phonenumber']
+      @phonenumber = attributes['phonenumber']
     end
 
     def process_relationships(relationships)
