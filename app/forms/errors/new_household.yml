@@ -2,6 +2,7 @@ en:
   errors:
     houseowner: 'Household name must be filled'
     floorNo: 'Floor number must be filled'
+    roomNo: 'Room number must be filled'
     ping: 'Ping must be filled'
     email: 'Email must be filled'
     phonenumber: 'Phonenumber is optional'
