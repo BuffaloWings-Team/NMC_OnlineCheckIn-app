@@ -9,8 +9,10 @@ module OnlineCheckIn
 
       params do
         required(:houseowner).filled
-        optional(:floorNo).filled
-        required(:contact).filled
+        required(:floorNo).filled
+        required(:ping).filled
+        required(:email).filled
+        optional(:phonenumber).filled
       end
     end
   end

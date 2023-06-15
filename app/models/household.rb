@@ -3,7 +3,7 @@
 module OnlineCheckIn
   # Behaviors of the currently logged in account
   class Household
-    attr_reader :id, :houseowner, :floorNo, :contact, # basic info
+    attr_reader :id, :houseowner, :floorNo, :ping, :email, :phonenumber, # basic info
                 :owner, :collaborators, :members, :policies # full details
 
     def initialize(househ_info)
@@ -17,7 +17,9 @@ module OnlineCheckIn
     def process_attributes(attributes)
       @houseowner = attributes['houseowner']
       @floorNo = attributes['floorNo']
-      @contact = attributes['contact']
+      @ping = attributes['ping']
+      @email = attributes['email']
+      @phonenumber = attribute['phonenumber']
     end
 
     def process_relationships(relationships)
