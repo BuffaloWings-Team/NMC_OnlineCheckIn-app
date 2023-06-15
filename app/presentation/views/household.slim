@@ -4,10 +4,10 @@ h2
 dl
   div class="row"
     div class="col-xs-3"
-      dt Household Repository:
+      dt Your Household ID:
     div class="col-xs-9"
       dd class="blockquote"
-        a href="#{household.floorNo}" #{household.floorNo}
+        dt #{household.floorNo}-#{household.roomNo}
 
 div class="row"
   div class="col-lg-9"
@@ -15,29 +15,45 @@ div class="row"
       table class="table"
         thead
           tr
-            th File
-            th Description
+            th Floor No.
+            th Room No.
+            th HouseSize(ping)
+            th Email
+            th Phone Number
         tbody
-          - household.members.each do |member|
             tr
-              td 
-                a href="/members/#{member.id}"
-                  == "#{member.filename}"
-              td #{member.description}
-    div class="row"
-      div class="col-xs-4"
-        - if household.policies.can_add_members
-          button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newMemberModal" + New Member
+                td 
+                  a #{household.floorNo}
+                td
+                  a #{household.roomNo}
+                td
+                  a #{household.ping}
+                td
+                  a #{household.email}
+                td
+                  a #{household.phonenumber}
+      include :household_new_partial
+        / tbody
+        /   - household.members.each do |member|
+        /     tr
+        /       td 
+        /         a href="/members/#{member.id}"
+        /           == "#{member.filename}"
+        /       td #{member.description}
+    / div class="row"
+    /   div class="col-xs-4"
+    /     - if household.policies.can_add_members
+    /       button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newMemberModal" + New Member
     div class="row mt-2"
   div class="col-lg-3"
     div class="panel panel-default"
-      div class="panel-heading" Collaborators
+      div class="panel-heading" <b>Household Members</b>
       div class="panel-body"
         - if household.collaborators.empty?
-          span class="small" There are no collaborators yet
+          span class="small" Pls remember to add your household members
         ul class="list-group"
-          li class="list-group-item clearfix"
-              = household.owner.username
+          / li class="list-group-item clearfix"
+          /     = household.houseowner
           - household.collaborators.each do |collaborator|
             li class="list-group-item clearfix"
               '  #{collaborator.username}
@@ -53,14 +69,13 @@ div class="row"
 
 include :member_new_partial
 include :collaborator_new_partial
-
-.row
-  .text-center
-    - if household.policies.can_edit
-      a href="" edit household
-    - if household.policies.can_delete
-      == ' | '
-      a href="" delete household
-    - if household.policies.can_leave
-      == ' | '
-      a href="" leave household
+/ .row
+/   .text-center
+/     - if household.policies.can_edit
+/       a href="" edit household
+/     - if household.policies.can_delete
+/       == ' | '
+/       a href="" delete household
+/     - if household.policies.can_leave
+/       == ' | '
+/       a href="" leave household
