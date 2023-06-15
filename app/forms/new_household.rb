@@ -13,7 +13,7 @@ module OnlineCheckIn
         required(:roomNo).filled
         required(:ping).filled
         required(:email).filled
-        optional(:phonenumber).filled
+        required(:phonenumber).filled
       end
     end
   end
