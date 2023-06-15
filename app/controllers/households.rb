@@ -84,10 +84,9 @@ module OnlineCheckIn
 
         # GET /households/
         routing.get do
-
+          print("start households get\n")
           household_list = GetAllHouseholds.new(App.config).call(@current_account)
           households = Households.new(household_list)
-          print("household_list is",household_list.to_s,"\n")
           view :households_all, locals: {
             current_account: @current_account, households: households
           }
@@ -99,10 +98,12 @@ module OnlineCheckIn
           routing.redirect '/auth/login' unless @current_account.logged_in?
           print("we're logged in\n")
           household_data = Form::NewHousehold.new.call(routing.params)
+          print("creating household\n")
           if household_data.failure?
             flash[:error] = Form.message_values(household_data)
             routing.halt
           end
+          print("household_data is",household_data.to_s,"\n")
 
           CreateNewHousehold.new(App.config).call(
             current_account: @current_account,
