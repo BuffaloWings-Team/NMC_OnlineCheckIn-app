@@ -17,7 +17,6 @@ module OnlineCheckIn
       config_url = "#{api_url}/households/#{household_id}/members"
       response = HTTP.auth("Bearer #{current_account.auth_token}")
                     .post(config_url, json: member_data)
-      print("member response: #{response}\n")
 
       response.code == 201 ? JSON.parse(response.body.to_s) : raise
     end
