@@ -20,8 +20,8 @@ div class="row"
             th HouseSize(ping)
             th Email
             th Phone Number
+
         tbody
-            tr
                 td 
                   a #{household.floorNo}
                 td
@@ -34,26 +34,26 @@ div class="row"
                   a #{household.phonenumber}
 
 
-div class="row"
-  div class="col-lg-9"
-    div class="row"
-      h2 Members
-      table class="table"
-        thread
-          tr 
-            th First Name 
-            th Last Name
-            th Date of Birth 
-        tbody
-          - household.members.each do |member|
-            tr               
-              td #{member.firstname}
-              td #{member.lastname}
-              td #{member.dob}
-    div class="row"
-      div class="col-xs-4"
-        - if household.policies.can_add_members
-          button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newMemberModal" Add Member
+
+      div class="col-lg-9"
+        div class="row"
+          h2 Members
+          table class="table"
+            thread
+              tr 
+                th First Name 
+                th Last Name
+                th Date of Birth 
+            tbody
+              - household.members.each do |member|
+                tr               
+                  td #{member.firstname}
+                  td #{member.lastname}
+                  td #{member.dob}
+      div class="row"
+        div class="col-xs-4"
+          - if household.policies.can_add_members
+            button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newMemberModal" Add Member
     div class="row mt-2"
   div class="col-lg-3"
     div class="panel panel-default"
@@ -79,13 +79,13 @@ div class="row"
 
 include :member_new_partial
 include :collaborator_new_partial
-.row
-  .text-center
-    - if household.policies.can_edit
-      a href="" edit household
-    - if household.policies.can_delete
-      == ' | '
-      a href="" delete household
-    - if household.policies.can_leave
-      == ' | '
-      a href="" leave household
+/ .row
+/   .text-center
+/     - if household.policies.can_edit
+/       a href="" edit household
+/     - if household.policies.can_delete
+/       == ' | '
+/       a href="" delete household
+/     - if household.policies.can_leave
+/       == ' | '
+/       a href="" leave household
