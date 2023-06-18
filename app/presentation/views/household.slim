@@ -79,13 +79,13 @@ div class="row"
 
 include :member_new_partial
 include :collaborator_new_partial
-/ .row
-/   .text-center
-/     - if household.policies.can_edit
-/       a href="" edit household
-/     - if household.policies.can_delete
-/       == ' | '
-/       a href="" delete household
-/     - if household.policies.can_leave
-/       == ' | '
-/       a href="" leave household
+.row
+  .text-center
+    - if household.policies.can_edit
+      a href="" edit household
+    - if household.policies.can_delete
+      == ' | '
+      a href="" delete household
+    - if household.policies.can_leave
+      == ' | '
+      a href="" leave household
