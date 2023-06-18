@@ -43,15 +43,9 @@ module OnlineCheckIn
         "#{@config.API_URL}/auth/sso",
         json: signed_sso_info
       )
-      print("stop before raise\n")
-      print("this is the signed_sso_info ",signed_sso_info.to_s)
-      print("\nthis is the response ",response.to_s)
       raise if response.code >= 400
-      print("\nstop after raise")
 
       account_info = JSON.parse(response)['data']['attributes']
-      print("stop after account_info\n")
-      print("account_info is",account_info.to_s)
       { account: account_info['account'],
         auth_token: account_info['auth_token'] }
     end

@@ -15,7 +15,6 @@ module OnlineCheckIn
 
     def call(current_account:, household_data:)
       config_url = "#{api_url}/households"
-      print("(In services) household_data is ",household_data.to_s)
       response = HTTP.auth("Bearer #{current_account.auth_token}")
                     .post(config_url, json: household_data)
 

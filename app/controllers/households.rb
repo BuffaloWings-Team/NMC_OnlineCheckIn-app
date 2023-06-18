@@ -93,23 +93,17 @@ module OnlineCheckIn
 
         # POST /households/
         routing.post do
-          print("start households post\n")
           routing.redirect '/auth/login' unless @current_account.logged_in?
-          print("we're logged in\n")
           household_data = Form::NewHousehold.new.call(routing.params)
-          print("household_data is",household_data.to_s,"\n")
           if household_data.failure?
-            print("we're halted\n")
             flash[:error] = Form.message_values(household_data)
             routing.halt
           end
-          print("(In controller) household_data is",household_data.to_s,"\n")
 
           CreateNewHousehold.new(App.config).call(
             current_account: @current_account,
             household_data: household_data.to_h
           )
-          print("we're done\n")
 
           flash[:notice] = 'Add member and collaborators to your new household'
         rescue StandardError => e
